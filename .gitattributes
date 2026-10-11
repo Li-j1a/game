@@ -1,0 +1,3 @@
+# 强制二进制处理,防止 Git 换行符转换破坏静态库与分块
+*.a binary
+*.part* binary
