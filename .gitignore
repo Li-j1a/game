@@ -1,0 +1,4 @@
+# 原 212MB 引擎库被切成了 part0/1/2 提交,原文件在远端由 Podfile 的 pre_install 拼回,故忽略原文件
+Libraries/libiPhone-lib.a
+# Burst 调试信息,构建不需要
+Eagledoku_BurstDebugInformation_DoNotShip/
