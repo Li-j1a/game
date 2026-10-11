@@ -1,0 +1,23 @@
+{
+  "project": "Eagledoku",
+  "platform": "ios",
+  "github": {
+    "owner": "Li-j1a",
+    "repo": "game"
+  },
+  "provider": "github",
+  "codemagic": {},
+  "bitrise": {},
+  "ios": {
+    "path": ".",
+    "scheme": "Unity-iPhone",
+    "bundleId": "com.The-Vayuputra.Eagledoku",
+    "configuration": "Release"
+  },
+  "flutter": {
+    "watch": {}
+  },
+  "reactNative": {},
+  "kmp": {},
+  "mobai": {}
+}
