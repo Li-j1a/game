@@ -2,3 +2,6 @@
 Libraries/libiPhone-lib.a
 # Burst 调试信息,构建不需要
 Eagledoku_BurstDebugInformation_DoNotShip/
+# 构建产物 IPA 不推上去
+dist/
+Podfile_Unity.backup
