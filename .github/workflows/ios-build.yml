@@ -638,9 +638,7 @@ jobs:
           path: |
             ${{ steps.params.outputs.ios_path }}/Pods
             ~/.cocoapods/repos
-          key: pods-${{ runner.os }}-${{ hashFiles(format('{0}/Podfile.lock', steps.params.outputs.ios_path)) }}
-          restore-keys: |
-            pods-${{ runner.os }}-
+          key: pods-v2-${{ runner.os }}-${{ hashFiles(format('{0}/Podfile.lock', steps.params.outputs.ios_path)) }}
 
       # One set of secrets per distribution, IOS_*_<SET>; the unsuffixed names
       # serve builds without a profile. A secret that does not exist arrives empty.
