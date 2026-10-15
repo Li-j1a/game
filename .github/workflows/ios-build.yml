@@ -1204,8 +1204,8 @@ jobs:
 
             echo "Running: $BUILD_CMD"
             if ! eval $BUILD_CMD > "$RUNNER_TEMP/archive.log" 2>&1; then
-              echo "::error::=== xcodebuild archive failed; last 40 lines ===" >&2
-              tail -40 "$RUNNER_TEMP/archive.log" | sed 's/^/::error::/' >&2
+              echo "::error::=== xcodebuild archive failed ===" >&2
+              grep -nEi "error|killed|no space|invalid|unsupported|not found|duplicate|undefined|ARCHIVE FAILED|build commands failed|PhaseScriptExecution" "$RUNNER_TEMP/archive.log" | head -60 | sed 's/^/::error::/' >&2
               exit 1
             fi
           fi
