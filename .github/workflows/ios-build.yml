@@ -1185,7 +1185,7 @@ jobs:
             BUILD_CMD="$BUILD_CMD COMPILER_INDEX_STORE_ENABLE=NO"
             BUILD_CMD="$BUILD_CMD DEBUG_INFORMATION_FORMAT=dwarf"
             BUILD_CMD="$BUILD_CMD ONLY_ACTIVE_ARCH=YES"
-            BUILD_CMD="$BUILD_CMD -quiet"
+            # DIAG: -quiet removed so xcodebuild prints the real compile error
 
             # Xcode 16+ native compilation caching
             BUILD_CMD="$BUILD_CMD SWIFT_ENABLE_COMPILE_CACHE=YES"
@@ -1205,7 +1205,7 @@ jobs:
             echo "Running: $BUILD_CMD"
             if ! eval $BUILD_CMD > "$RUNNER_TEMP/archive.log" 2>&1; then
               echo "::error::=== xcodebuild archive failed ===" >&2
-              grep -nEi "error|killed|no space|invalid|unsupported|not found|duplicate|undefined|ARCHIVE FAILED|build commands failed|PhaseScriptExecution" "$RUNNER_TEMP/archive.log" | head -60 | sed 's/^/::error::/' >&2
+              grep -nE "error:|fatal error:|ld:|Killed|No space left|not found|Undefined symbols|duplicate symbol|The following build commands failed|ARCHIVE FAILED|PhaseScriptExecution|clang: error" "$RUNNER_TEMP/archive.log" | head -80 | sed 's/^/::error::/' >&2
               exit 1
             fi
           fi
