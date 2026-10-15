@@ -1203,7 +1203,11 @@ jobs:
             fi
 
             echo "Running: $BUILD_CMD"
-            eval $BUILD_CMD
+            if ! eval $BUILD_CMD > "$RUNNER_TEMP/archive.log" 2>&1; then
+              echo "::error::=== xcodebuild archive failed; last 40 lines ===" >&2
+              tail -40 "$RUNNER_TEMP/archive.log" | sed 's/^/::error::/' >&2
+              exit 1
+            fi
           fi
 
           # Create IPA
@@ -1221,10 +1225,14 @@ jobs:
             export APP_BUNDLE_ID
             write_export_options ExportOptions.plist
 
-            xcodebuild -exportArchive \
+            if ! xcodebuild -exportArchive \
               -archivePath build/App.xcarchive \
               -exportOptionsPlist ExportOptions.plist \
-              -exportPath build/export
+              -exportPath build/export > "$RUNNER_TEMP/export.log" 2>&1; then
+              echo "::error::=== xcodebuild -exportArchive failed; last 40 lines ===" >&2
+              tail -40 "$RUNNER_TEMP/export.log" | sed 's/^/::error::/' >&2
+              exit 1
+            fi
 
             # Move IPA to expected location
             mv build/export/*.ipa "build/$BUILD_ID.ipa"
