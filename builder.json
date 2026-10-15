@@ -19,5 +19,13 @@
   },
   "reactNative": {},
   "kmp": {},
-  "mobai": {}
+  "mobai": {},
+  "signing": {
+    "dir": "G:/APPLEbuildtool/signing"
+  },
+  "profiles": {
+    "store": {
+      "distribution": "store"
+    }
+  }
 }
