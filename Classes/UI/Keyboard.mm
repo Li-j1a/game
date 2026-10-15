@@ -6,7 +6,7 @@
 #import <GameController/GameController.h>
 
 #ifndef FILTER_EMOJIS_IOS_KEYBOARD
-#define FILTER_EMOJIS_IOS_KEYBOARD 1
+#define FILTER_EMOJIS_IOS_KEYBOARD 0
 #endif
 
 
